@@ -2,27 +2,39 @@ import Header from "./components/Header";
 import AddIssue from "./components/AddIssue";
 //import Show from "./components/Show";
 import Vote from "./components/Vote";
+import ShowResault from "./components/ShowResault";
 
 import { useState, useEffect } from "react";
 
 function App() {
   // states
   const [issues, setIssues] = useState([]);
+  const [answers, setAnswers] = useState([]);
 
-  // setIssues from Data
+  // setIssues  & setAnswers från Data
   useEffect(() => {
     const getIssues = async () => {
       const issuesFromServer = await fetchIssues();
       setIssues(issuesFromServer);
+      const answersFromSever = await fetchAnswers();
+      setAnswers(answersFromSever);
     };
     getIssues();
   }, []);
+  //console.log(answers);
 
   // fetch issues
   const fetchIssues = async () => {
     const res = await fetch("http://localhost:3000/issues");
     const data = await res.json();
-//console.log(data);
+    //console.log(data);
+    return data;
+  };
+
+  // fetch Answers
+  const fetchAnswers = async () => {
+    const res = await fetch("http://localhost:3000/answers");
+    const data = await res.json();
     return data;
   };
 
@@ -40,8 +52,17 @@ function App() {
     setIssues([...issues, data]);
   };
 
-  const onVote = (answer) => {
-    console.log(answer);
+  const onVote = async (answer) => {
+    //console.log(answer);
+    const res = await fetch("http://localhost:3000/answers", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(answer),
+    });
+    const data = await res.json();
+    setAnswers([...answers, data]);
   };
 
   return (
@@ -50,17 +71,21 @@ function App() {
       <div className="container">
         <AddIssue onAdd={onAdd} />
       </div>
-     
+
       <div className="container">
         <Vote issues={issues} onVote={onVote} />
+      </div>
+      <div className="container result-container">
+        <ShowResault answers={answers} />
       </div>
     </div>
   );
 }
 
-
-{/* <div className="container">
+{
+  /* <div className="container">
 <Show issues={issues} />
-</div> */}
+</div> */
+}
 
 export default App;

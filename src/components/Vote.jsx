@@ -8,30 +8,33 @@ const Vote = ({ issues, onVote }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // const data = new FormData(e.target);
-    // console.log(data);
 
-    /// exemplen hur vi kan slå ihop två arrays till key pair values
-    // var keys = ["foo", "bar", "baz"];
-    // var values = [11, 22, 33];
-    // var result = {};
-    // keys.forEach((key, i) => (result[key] = values[i]));
-    // console.log(result);
+    // plocka ut alla issues och lägg i en ny/egen array
+    const newIssuesArray = issues.map((issue) => {
+      console.log(issue.issue);
+      return issue.issue;
+    });
 
+    // gör om våran timeArray från string till numbers
+    let timeToNumber = time.map((i) => Number(i));
+    console.log("timeToNumber", timeToNumber);
+
+    // Skapa ett object där issues är "keys" och time är "values"
+    let newObject = {};
+    newIssuesArray.forEach((item, i) => (newObject[item] = timeToNumber[i]));
+    console.log(newObject);
+
+    // skapa ett object som vi skall skicka till våran DB med samlad info från formuläret
     const answer = {
       name: name,
-      issues: issue,
-      time: time,
+      IssueTimeObj: newObject,
     };
     console.log("answer", answer);
 
+    // Anropa våran funktion som sköter en POST request till DB. dvs sparar vårat nya object i DB.
     onVote(answer);
 
-    console.log(e.target)
-    console.log("formulär", e.target[1][0]);
-    console.log("formulär", e.target[1].label);
-
-    // få tag i varje issue, lägg i ett object.. spala allt i ett object och skicka över till App.js , gör en POST och spara i DB
+    // nollsäller våra states
     setName("");
     setIssue([]);
     setTime([]);
@@ -51,7 +54,7 @@ const Vote = ({ issues, onVote }) => {
         <div className="issue" key={issue.id}>
           <h3
             id={issue.id}
-            onChange={(e) => setIssue([...issue, e.target.value])}
+            onSubmit={(e) => setIssue([...issue, e.target.value])}
             value={issue.issue}
           >
             {issue.issue}
@@ -69,3 +72,10 @@ const Vote = ({ issues, onVote }) => {
 };
 
 export default Vote;
+
+/// exemplen hur vi kan slå ihop två arrays till key pair values
+// var keys = ["foo", "bar", "baz"];
+// var values = [11, 22, 33];
+// var result = {};
+// keys.forEach((key, i) => (result[key] = values[i]));
+// console.log(result);
