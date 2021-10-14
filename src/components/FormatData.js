@@ -1,7 +1,6 @@
 //funktion som plockar ut gissningar per issue
 
 const FormatData = (answers) => {
-  console.log("svar", answers)
   let allEstimates = [];
   let issues = Object.keys(answers[0].IssueTimeObj);
   for (let i = 0; i < issues.length; i++) {

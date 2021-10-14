@@ -12,10 +12,11 @@ const ShowResault = ({ answers }) => {
   
 
   //här är Rebeckas funktion för att formatera om datan till tidsgissningar per issue istället för per person.
-  //Tyvärr lyckas jag inte bryta ut den för då kommer inte propen answers med eftersom den är asynk (tror jag?)
-  function FormatData(answers) {
+  //Tyvärr lyckas jag inte bryta ut den för då kommer inte propen answers med eftersom den är asynk (?)
+  
   let allEstimates = [];
-  let issues = Object.keys(answers[0].IssueTimeObj);
+  if(answers.length) //det här är ett fulhack för annars kraschar appen om answers är tom
+  {let issues = Object.keys(answers[0].IssueTimeObj);
   for (let i = 0; i < issues.length; i++) {
     const issueText = issues[i];
     let issueEstimates = [];
@@ -30,10 +31,10 @@ const ShowResault = ({ answers }) => {
       }
     }
     allEstimates.push({ issue: issueText, estimates: issueEstimates });
-  } 
-  return allEstimates;}
+  } console.log("alla tidsgissningar: ", allEstimates);}
   
-  console.log("tidsestimeringar per issue: ", FormatData(answers));
+  
+  
 
   //console.log(answers[0].IssueTimeObj);
   //const allIssues = answers[0].IssueTimeObj
