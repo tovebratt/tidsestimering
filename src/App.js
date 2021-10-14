@@ -23,12 +23,44 @@ function App() {
   }, []);
   //console.log(answers);
 
+  // // fetch issues
+  // const fetchIssues = async () => {
+  //   const res = await fetch("http://localhost:3000/issues");
+  //   const data = await res.json();
+  //   //console.log(data);
+  //   return data;
+  // };
+
   // fetch issues
+
   const fetchIssues = async () => {
-    const res = await fetch("http://localhost:3000/issues");
+    //const res1 = await fetch('http://localhost:3000/issues');
+
+    const res = await fetch(
+      "https://api.github.com/repos/tovebratt/tidsestimering/issues"
+    );
+
     const data = await res.json();
-    //console.log(data);
-    return data;
+
+    let issues = [];
+
+    data.map((issue) => {
+      issues.push({
+        project: "Grupp 3",
+
+        issue: issue.title,
+
+        time: 0,
+
+        id: issue.id,
+      });
+
+      return issues;
+    });
+
+    console.log(issues);
+
+    return issues;
   };
 
   // fetch Answers
