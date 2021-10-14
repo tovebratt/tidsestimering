@@ -9,8 +9,7 @@ import { useState } from "react";
 
 const ShowResault = ({ answers }) => {
   const [allResults, setAllResults] = useState({});
-
-  console.log(answers);
+  
   //console.log(answers[0].IssueTimeObj);
   //const allIssues = answers[0].IssueTimeObj
 

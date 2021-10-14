@@ -3,7 +3,7 @@ import AddIssue from "./components/AddIssue";
 //import Show from "./components/Show";
 import Vote from "./components/Vote";
 import ShowResault from "./components/ShowResault";
-
+import FormatData from "./components/FormatData"; //Rebecka
 import { useState, useEffect } from "react";
 
 function App() {
@@ -21,6 +21,12 @@ function App() {
     };
     getIssues();
   }, []);
+
+  //Rebecka, test. Här ska nog Toves beräkningar köras med min data som prop, 
+  // sedan sak resultatet av dem stoppas i något state som ska in som prop i ShowResault-komponenten??:
+  useEffect(()=>{if(answers.length){console.log("alla tidsgissningar: ", FormatData(answers))}}, [answers])
+
+
   //console.log(answers);
 
   // // fetch issues
