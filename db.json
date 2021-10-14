@@ -21,49 +21,72 @@
   ],
   "answers": [
     {
-      "name": "Olesia",
-      "IssueTimeObj": {
-        "issue 1": 2,
-        "API github": 2,
-        "test": 2
-      },
-      "id": 1
-    },
-    {
       "name": "Antonia",
       "IssueTimeObj": {
-        "issue 1": 1,
-        "issue 2": 1,
+        "css": 1,
+        "Hämta projektnamn från github-api och skriva ut": 1,
+        "Tömma input vid submit": 1,
+        "Felmeddelande/require när input är tom": 1,
+        "Funktion att inte kunna rösta flera ggr": 1,
+        "extra feature: ta bort namn ur listan när personen svarat": 1,
+        "State-hantering för att visa rapport": 1,
+        "Uträkningar resultat": 0,
+        "Komponent visa rapport": 1,
+        "Initial committ": 1,
         "API github": 1
       },
-      "id": 2
+      "id": 8
+    },
+    {
+      "name": "Johanna",
+      "IssueTimeObj": {
+        "css": 1,
+        "Hämta projektnamn från github-api och skriva ut": 1,
+        "Tömma input vid submit": 12,
+        "Felmeddelande/require när input är tom": 2,
+        "Funktion att inte kunna rösta flera ggr": 2,
+        "extra feature: ta bort namn ur listan när personen svarat": 2,
+        "State-hantering för att visa rapport": 2,
+        "Uträkningar resultat": 2,
+        "Komponent visa rapport": 1,
+        "Initial committ": 0,
+        "API github": -1
+      },
+      "id": 9
     },
     {
       "name": "Tove",
       "IssueTimeObj": {
-        "issue 1": 5,
-        "issue 2": 3,
-        "test": 1
+        "css": 3,
+        "Hämta projektnamn från github-api och skriva ut": 3,
+        "Tömma input vid submit": 3,
+        "Felmeddelande/require när input är tom": 3,
+        "Funktion att inte kunna rösta flera ggr": 3,
+        "extra feature: ta bort namn ur listan när personen svarat": 3,
+        "State-hantering för att visa rapport": 3,
+        "Uträkningar resultat": 3,
+        "Komponent visa rapport": 3,
+        "Initial committ": 3,
+        "API github": 3
       },
-      "id": 3
+      "id": 10
     },
     {
-      "name": "Rebecka",
+      "name": "Olesia",
       "IssueTimeObj": {
-        "issue 1": 1,
-        "issue 2": 2,
-        "test": 1
+        "css": 1,
+        "Hämta projektnamn från github-api och skriva ut": 10,
+        "Tömma input vid submit": 1,
+        "Felmeddelande/require när input är tom": 10,
+        "Funktion att inte kunna rösta flera ggr": 1,
+        "extra feature: ta bort namn ur listan när personen svarat": 10,
+        "State-hantering för att visa rapport": 1,
+        "Uträkningar resultat": 10,
+        "Komponent visa rapport": 9,
+        "Initial committ": 8,
+        "API github": 7
       },
-      "id": 4
-    },
-    {
-      "name": "Rebecka",
-      "IssueTimeObj": {
-        "issue 1": 2,
-        "issue 2": 3,
-        "test": 4
-      },
-      "id": 5
+      "id": 11
     }
   ]
 }
