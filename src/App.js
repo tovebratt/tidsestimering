@@ -1,9 +1,9 @@
-import Header from "./components/Header";
-import AddIssue from "./components/AddIssue";
+import Header from './components/Header';
+import AddIssue from './components/AddIssue';
 //import Show from "./components/Show";
-import Vote from "./components/Vote";
+import Vote from './components/Vote';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 function App() {
   // states
@@ -20,19 +20,33 @@ function App() {
 
   // fetch issues
   const fetchIssues = async () => {
-    const res = await fetch("http://localhost:3000/issues");
+    //const res1 = await fetch('http://localhost:3000/issues');
+    const res = await fetch(
+      'https://api.github.com/repos/tovebratt/tidsestimering/issues'
+    );
     const data = await res.json();
-//console.log(data);
-    return data;
+
+    let issues = [];
+    data.map((issue) => {
+      issues.push({
+        project: 'Grupp 3',
+        issue: issue.title,
+        time: 0,
+        id: issue.id,
+      });
+      return issues;
+    });
+    console.log(issues);
+    return issues;
   };
 
   // callback functions
   const onAdd = async (issue) => {
     console.log(issue);
-    const res = await fetch("http://localhost:3000/issues", {
-      method: "POST",
+    const res = await fetch('http://localhost:3000/issues', {
+      method: 'POST',
       headers: {
-        "Content-type": "application/json",
+        'Content-type': 'application/json',
       },
       body: JSON.stringify(issue),
     });
@@ -47,20 +61,15 @@ function App() {
   return (
     <div>
       <Header />
-      <div className="container">
+      <div className='container'>
         <AddIssue onAdd={onAdd} />
       </div>
-     
-      <div className="container">
+
+      <div className='container'>
         <Vote issues={issues} onVote={onVote} />
       </div>
     </div>
   );
 }
-
-
-{/* <div className="container">
-<Show issues={issues} />
-</div> */}
 
 export default App;
