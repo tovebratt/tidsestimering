@@ -108,7 +108,7 @@ function App() {
         <Vote issues={issues} onVote={onVote} />
       </div>
       <div className="container result-container">
-        <ShowResault answers={answers} />
+        <ShowResault answers={answers} issues = {issues}/>
       </div>
     </div>
   );

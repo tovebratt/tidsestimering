@@ -7,10 +7,27 @@ import { useState } from "react";
 // som visar dels spannet på gissninar (högst och lägst)
 // samt medel och median -tidsåtgång per issue.
 
-const ShowResault = ({ answers }) => {
+const ShowResault = ({ answers, issues }) => {
   const [allResults, setAllResults] = useState({});
 
-  console.log(answers);
+  //Rebeckas funktion som plockar ut gissningar per issue
+  let allEstimates = []
+  for (let i = 0; i < issues.length; i++) {
+    const issueText = issues[i].issue;
+    let issueEstimates = []
+    for (let j = 0; j < answers.length; j++) {
+     const timeObj = answers[j].IssueTimeObj;
+     const keys = Object.keys(timeObj);
+     const values = Object.values(timeObj);
+      for (let k = 0; k < keys.length; k++) {
+      if (keys[k] == issueText)
+      {issueEstimates.push(values[k])}
+     }
+    }allEstimates.push({issue: issueText, estimates: issueEstimates})  
+  }
+  console.log("tidsgissningar: ", allEstimates)
+
+
   //console.log(answers[0].IssueTimeObj);
   //const allIssues = answers[0].IssueTimeObj
 
