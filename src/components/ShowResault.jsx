@@ -9,26 +9,31 @@ import { useState } from "react";
 
 const ShowResault = ({ answers }) => {
   const [allResults, setAllResults] = useState({});
+  
 
-  //Rebeckas funktion som plockar ut gissningar per issue
+  //här är Rebeckas funktion för att formatera om datan till tidsgissningar per issue istället för per person.
+  //Tyvärr lyckas jag inte bryta ut den för då kommer inte propen answers med eftersom den är asynk (tror jag?)
+  function FormatData(answers) {
   let allEstimates = [];
   let issues = Object.keys(answers[0].IssueTimeObj);
   for (let i = 0; i < issues.length; i++) {
     const issueText = issues[i];
     let issueEstimates = [];
     for (let j = 0; j < answers.length; j++) {
-     const timeObj = answers[j].IssueTimeObj;
-     const keys = Object.keys(timeObj);
-     const values = Object.values(timeObj);
+      const timeObj = answers[j].IssueTimeObj;
+      const keys = Object.keys(timeObj);
+      const values = Object.values(timeObj);
       for (let k = 0; k < keys.length; k++) {
-      if (keys[k] == issueText)
-      {issueEstimates.push(values[k])}
-     }
+        if (keys[k] == issueText) {
+          issueEstimates.push(values[k]);
+        }
+      }
     }
-    allEstimates.push({issue: issueText, estimates: issueEstimates})  
-  }
-  console.log("alla tidsgissningar: ", allEstimates)
-
+    allEstimates.push({ issue: issueText, estimates: issueEstimates });
+  } 
+  return allEstimates;}
+  
+  console.log("tidsestimeringar per issue: ", FormatData(answers));
 
   //console.log(answers[0].IssueTimeObj);
   //const allIssues = answers[0].IssueTimeObj
