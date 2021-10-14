@@ -1,6 +1,7 @@
 //funktion som plockar ut gissningar per issue
 
 const FormatData = (answers) => {
+  if(answers.length){
   let allEstimates = [];
   let issues = Object.keys(answers[0].IssueTimeObj);
   for (let i = 0; i < issues.length; i++) {
@@ -11,15 +12,15 @@ const FormatData = (answers) => {
       const keys = Object.keys(timeObj);
       const values = Object.values(timeObj);
       for (let k = 0; k < keys.length; k++) {
-        if (keys[k] == issueText) {
+        if (keys[k] === issueText) {
           issueEstimates.push(values[k]);
         }
       }
     }
     allEstimates.push({ issue: issueText, estimates: issueEstimates });
   }
-  console.log("alla tidsgissningar: ", allEstimates);
+  
   return allEstimates;
-};
+};}
 
-export { FormatData };
+export default  FormatData;
