@@ -36,18 +36,18 @@ function App() {
 
     // Calc min
     const minEstimate = estimateArr.map((issue) => Math.min(...issue.estimates));
-    console.log(minEstimate);
+    console.log("minEstimate", minEstimate);
     setMinEstimate(minEstimate);
 
     // Calc max
     const maxEstimate = estimateArr.map((issue) => Math.max(...issue.estimates));
-    console.log(maxEstimate);
+    console.log("maxEstimate", maxEstimate);
     setMaxEstimate(maxEstimate);
 
 
     // Calc median
     const allEstimates = estimateArr.map((issue) => issue.estimates);
-    console.log(allEstimates);
+    console.log("allEstimates", allEstimates);
 
     let firstIssue = estimateArr[0].estimates;
 
