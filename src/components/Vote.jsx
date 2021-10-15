@@ -42,8 +42,8 @@ const Vote = ({ issues, onVote }) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <select onChange={(e) => setName(e.target.value)}>
-        <option>välj person...</option>
+      <select onChange={(e) => setName(e.target.value)} required>
+        <option value ="">välj person...</option>
         <option value="Antonia">Antonia</option>
         <option value="Johanna">Johanna</option>
         <option value="Tove">Tove</option>
@@ -60,6 +60,7 @@ const Vote = ({ issues, onVote }) => {
             {issue.issue}
           </h3>
           <input
+          required
             type="number"
             placeholder="hours"
             onChange={(e) => setTime([...time, e.target.value])}
