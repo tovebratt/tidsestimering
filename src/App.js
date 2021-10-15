@@ -35,31 +35,21 @@ function App() {
 
   const fetchIssues = async () => {
     //const res1 = await fetch('http://localhost:3000/issues');
-
     const res = await fetch(
       "https://api.github.com/repos/tovebratt/tidsestimering/issues"
     );
-
     const data = await res.json();
-
     let issues = [];
-
     data.map((issue) => {
       issues.push({
         project: "Grupp 3",
-
         issue: issue.title,
-
         time: 0,
-
         id: issue.id,
       });
-
       return issues;
     });
-
     console.log(issues);
-
     return issues;
   };
 
@@ -105,7 +95,7 @@ function App() {
       </div>
 
       <div className="container">
-        <Vote issues={issues} onVote={onVote} />
+        <Vote issues={issues} onVote={onVote} answers={answers}/>
       </div>
       <div className="container result-container">
         <ShowResault answers={answers} />
