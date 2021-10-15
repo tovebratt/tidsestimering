@@ -7,11 +7,15 @@ import { useState } from "react";
 // som visar dels spannet på gissninar (högst och lägst)
 // samt medel och median -tidsåtgång per issue.
 
-const ShowResault = ({ answers }) => {
+const ShowResault = ({ answers, minEstimate, maxEstimate }) => {
   const [allResults, setAllResults] = useState({});
+  console.log(answers);
+  console.log(minEstimate);
+  console.log(maxEstimate);
+  // console.log(answers[0].IssueTimeObj);
   
-  //console.log(answers[0].IssueTimeObj);
-  //const allIssues = answers[0].IssueTimeObj
+  
+
 
   return (
     <div>
