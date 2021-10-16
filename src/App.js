@@ -24,48 +24,52 @@ function App() {
     getIssues();
   }, []);
 
-  //Rebecka, test. Här ska nog Toves beräkningar köras med min data som prop, 
+  //Rebecka, test. Här ska nog Toves beräkningar köras med min data som prop,
   // sedan sak resultatet av dem stoppas i något state som ska in som prop i ShowResault-komponenten??:
   // useEffect(()=>{if(answers.length){console.log("alla tidsgissningar: ", FormatData(answers))}}, [answers])
-  useEffect(()=>{if(answers.length){
-    console.log("alla tidsgissningar: ", FormatData(answers))
-    
-    let estimateArr= FormatData(answers);
-    console.log(estimateArr);
-    console.log(estimateArr[0].estimates);
+  useEffect(() => {
+    if (answers.length) {
+      console.log("alla tidsgissningar: ", FormatData(answers));
 
-    // Calc min
-    const minEstimate = estimateArr.map((issue) => Math.min(...issue.estimates));
-    console.log("minEstimate", minEstimate);
-    setMinEstimate(minEstimate);
+      let estimateArr = FormatData(answers);
+      //console.log(estimateArr);
+      //console.log(estimateArr[0].estimates);
 
-    // Calc max
-    const maxEstimate = estimateArr.map((issue) => Math.max(...issue.estimates));
-    console.log("maxEstimate", maxEstimate);
-    setMaxEstimate(maxEstimate);
+      // Calc min
+      const minEstimate = estimateArr.map((issue) =>
+        Math.min(...issue.estimates)
+      );
+      //console.log("minEstimate", minEstimate);
+      setMinEstimate(minEstimate);
 
+      // Calc max
+      const maxEstimate = estimateArr.map((issue) =>
+        Math.max(...issue.estimates)
+      );
+      //console.log("maxEstimate", maxEstimate);
+      setMaxEstimate(maxEstimate);
 
-    // Calc median
-    const allEstimates = estimateArr.map((issue) => issue.estimates);
-    console.log("allEstimates", allEstimates);
+      // Calc median
+      const allEstimates = estimateArr.map((issue) => issue.estimates);
+      //console.log("allEstimates", allEstimates);
 
-    let firstIssue = estimateArr[0].estimates;
+      let firstIssue = estimateArr[0].estimates;
 
-    const medianEstimate = firstIssue => {
-      const mid = Math.floor(firstIssue.length / 2),
-        nums = [...firstIssue].sort((a, b) => a - b);
-      return firstIssue.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
-    };
-    console.log(medianEstimate(firstIssue));
+      const medianEstimate = (firstIssue) => {
+        const mid = Math.floor(firstIssue.length / 2),
+          nums = [...firstIssue].sort((a, b) => a - b);
+        return firstIssue.length % 2 !== 0
+          ? nums[mid]
+          : (nums[mid - 1] + nums[mid]) / 2;
+      };
+      //console.log(medianEstimate(firstIssue));
 
-    // Calc average
-    const averageEstimate = arr => arr.reduce((a,b) => a + b, 0) / arr.length;
-    console.log(averageEstimate(firstIssue));
-
-
-  }}, [answers])
-
-
+      // Calc average
+      const averageEstimate = (arr) =>
+        arr.reduce((a, b) => a + b, 0) / arr.length;
+      //console.log(averageEstimate(firstIssue));
+    }
+  }, [answers]);
 
   //console.log(answers);
 
@@ -153,8 +157,14 @@ function App() {
       <div className="container">
         <Vote issues={issues} onVote={onVote} />
       </div>
-      <div className="container result-container">
-        <ShowResault answers={answers} minEstimate={minEstimate} maxEstimate={maxEstimate}/>
+      <div className="container result-container {
+ ">
+        <ShowResault
+          answers={answers}
+          minEstimate={minEstimate}
+          maxEstimate={maxEstimate}
+          issues={issues}
+        />
       </div>
     </div>
   );
