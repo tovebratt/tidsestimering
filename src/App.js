@@ -62,12 +62,12 @@ function App() {
           ? nums[mid]
           : (nums[mid - 1] + nums[mid]) / 2;
       };
-      //console.log(medianEstimate(firstIssue));
+      console.log("medianEstimate", medianEstimate(firstIssue));
 
       // Calc average
       const averageEstimate = (arr) =>
         arr.reduce((a, b) => a + b, 0) / arr.length;
-      //console.log(averageEstimate(firstIssue));
+      console.log("averageEstimate", averageEstimate(firstIssue));
     }
   }, [answers]);
 
@@ -85,31 +85,23 @@ function App() {
 
   const fetchIssues = async () => {
     //const res1 = await fetch('http://localhost:3000/issues');
-
     const res = await fetch(
       "https://api.github.com/repos/tovebratt/tidsestimering/issues"
     );
-
     const data = await res.json();
-
+    //console.log("data", data)
     let issues = [];
 
     data.map((issue) => {
       issues.push({
         project: "Grupp 3",
-
         issue: issue.title,
-
         time: 0,
-
         id: issue.id,
       });
-
       return issues;
     });
-
     console.log(issues);
-
     return issues;
   };
 

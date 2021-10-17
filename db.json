@@ -76,55 +76,6 @@
         "API github": 3
       },
       "id": 10
-    },
-    {
-      "name": "Olesia",
-      "IssueTimeObj": {
-        "css": 1,
-        "Hämta projektnamn från github-api och skriva ut": 10,
-        "Tömma input vid submit": 1,
-        "Felmeddelande/require när input är tom": 10,
-        "Funktion att inte kunna rösta flera ggr": 1,
-        "extra feature: ta bort namn ur listan när personen svarat": 10,
-        "State-hantering för att visa rapport": 1,
-        "Uträkningar resultat": 10,
-        "Komponent visa rapport": 9,
-        "Initial committ": 8,
-        "API github": 7
-      },
-      "id": 11
-    },
-    {
-      "name": "Olesia",
-      "IssueTimeObj": {
-        "css": 5,
-        "Hämta projektnamn från github-api och skriva ut": 5,
-        "Tömma input vid submit": 5,
-        "Funktion att inte kunna rösta flera ggr": 5,
-        "extra feature: ta bort namn ur listan när personen svarat": 5,
-        "State-hantering för att visa rapport": 4,
-        "Uträkningar resultat": 3,
-        "Komponent visa rapport": 5,
-        "Initial committ": 5,
-        "API github": 5
-      },
-      "id": 12
-    },
-    {
-      "name": "Tove",
-      "IssueTimeObj": {
-        "css": 1,
-        "Hämta projektnamn från github-api och skriva ut": 10,
-        "Tömma input vid submit": 1,
-        "Funktion att inte kunna rösta flera ggr": 10,
-        "extra feature: ta bort namn ur listan när personen svarat": -1,
-        "State-hantering för att visa rapport": -10,
-        "Uträkningar resultat": 1,
-        "Komponent visa rapport": 10,
-        "Initial committ": 1,
-        "API github": 10
-      },
-      "id": 13
     }
   ]
 }

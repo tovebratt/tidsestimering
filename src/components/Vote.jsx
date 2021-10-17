@@ -8,7 +8,7 @@ const Vote = ({ issues, onVote }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
+   
     // plocka ut alla issues och lägg i en ny/egen array
     const newIssuesArray = issues.map((issue) => {
       console.log(issue.issue);
@@ -43,7 +43,7 @@ const Vote = ({ issues, onVote }) => {
   return (
     <form onSubmit={onSubmit}>
       <select onChange={(e) => setName(e.target.value)} required>
-        <option value ="">välj person...</option>
+        <option value="">välj person...</option>
         <option value="Antonia">Antonia</option>
         <option value="Johanna">Johanna</option>
         <option value="Tove">Tove</option>
@@ -60,7 +60,7 @@ const Vote = ({ issues, onVote }) => {
             {issue.issue}
           </h3>
           <input
-          required
+            required
             type="number"
             placeholder="hours"
             onChange={(e) => setTime([...time, e.target.value])}

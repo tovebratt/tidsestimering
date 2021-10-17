@@ -16,17 +16,19 @@ body {
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
-  border: 1px solid rgb(21, 22, 22);
   padding: 30px;
   border-radius: 5px;
+  padding: 10px;
+  box-shadow: 5px 5px 8px rgb(42, 42, 44);
 }
+
+/* box-shadow: 15px 15px 8px rgba(8, 68, 8, 0.849); */
+
 .result-container {
   min-width: 700px;
-
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
-  border: 1px solid rgb(21, 22, 22);
   padding: 30px;
   border-radius: 5px;
 }
@@ -66,6 +68,7 @@ body {
   font-size: 15px;
   font-family: inherit;
   border-radius: 22px;
+  box-shadow: 5px 5px 5px rgba(8, 43, 8, 0.849);
 }
 
 .btn:focus {
@@ -102,6 +105,8 @@ body {
   justify-content: space-between;
   background: #f4f4f4;
   padding: 30px;
+  box-shadow: 5px 5px 8px rgb(42, 42, 44);
+  margin-bottom: 30px;
 }
 
 .flex li {

@@ -14,8 +14,8 @@ const ShowResault = ({ answers, minEstimate, maxEstimate, issues }) => {
   const [showResaultDivMedel, setShowResaultDivMedel] = useState(false);
   const [showResaultDivMedian, setShowResaultDivMedian] = useState(false);
 
-  console.log("minEstimate", minEstimate);
-  console.log("maxEstimate", maxEstimate);
+  //console.log("minEstimate", minEstimate);
+  //console.log("maxEstimate", maxEstimate);
   // console.log(answers[0].IssueTimeObj);
 
   // plocka ut alla issues och lägg i en ny/egen array
@@ -24,12 +24,84 @@ const ShowResault = ({ answers, minEstimate, maxEstimate, issues }) => {
     //console.log(issue.issue);
     newArray.push(issue.issue);
   });
-  console.log(newArray);
+  //console.log(newArray);
 
+  // creatte an array of numbers
+  let keyArray = Array.from(Array(200).keys());
+  //console.log(keyArray);
 
   return (
     <div>
       <div className="result">
+        <button
+          className="btn"
+          onClick={() => setShowResaultDivMin(!showResaultDivMin)}
+        >
+          Gissningar lägsta värden
+        </button>
+        {showResaultDivMin && (
+          <div className="flex">
+            <ul>
+              {issues.map((issue, index) => (
+                <li key={index}>{issue.issue}</li>
+              ))}
+            </ul>
+            <ul>
+              {minEstimate.map((estimate, index) => (
+                <li key={index}>{estimate} Timmar </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+      <div className="result">
+        <button
+          className="btn"
+          onClick={() => setShowResaultDivMax(!showResaultDivMax)}
+        >
+          Gissningar högsta värden
+        </button>
+        {showResaultDivMax && (
+          <div className="flex">
+            <ul>
+              {issues.map((issue) => (
+                <li>{issue.issue}</li>
+              ))}
+            </ul>
+            <ul>
+              {maxEstimate.map((estimate) => (
+                <li>{estimate} Timmar </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+      <div className="result">
+        <button
+          className="btn"
+          onClick={() => setShowResaultDivMedel(!showResaultDivMedel)}
+        >
+          Medel värden
+        </button>
+        {showResaultDivMedel && <div className="flex"></div>}
+      </div>
+      <div className="result">
+        <button
+          className="btn"
+          onClick={() => setShowResaultDivMedian(!showResaultDivMedian)}
+        >
+          Median värden
+        </button>
+        {showResaultDivMedian && <div className="flex"></div>}
+      </div>
+    </div>
+  );
+};
+
+export default ShowResault;
+
+{
+  /* <div className="result">
         <button className="btn" onClick={() =>setShowResaultDivMin(!showResaultDivMin)}>
           Gissningar lägsta värden
         </button>
@@ -79,74 +151,66 @@ const ShowResault = ({ answers, minEstimate, maxEstimate, issues }) => {
       </div>
       <div className="result">
         <button className="btn" onClick={()=> setShowResaultDivMedian(!showResaultDivMedian)}>
-
           Median värden
         </button>
         {showResaultDivMedian && <div className="flex"></div>}
-      </div>
-    </div>
-  );
-};
+      </div> */
+}
 
-export default ShowResault;
+// // // plocka ut alla issues och lägg i en ny/egen array
+// // const newIssuesArrays = answers.map((answer) => {
+// //   const keys = Object.keys(answer.IssueTimeObj);
+// //   return keys;
+// // });
+// // let issueArray = newIssuesArrays[0];
+// // console.log("issueArray", issueArray);
 
+// // // plocka ut alla issues och lägg i en ny/egen array
+// // const newIssuesArrays = answers.map((answer) => {
+// //   const keys = Object.keys(answer.IssueTimeObj);
+// //   console.log("keys", keys)
+// //   Object.values(keys).map((i)=>{
+// //     issueArray.push(i);
+// //   })
+// //   console.log(issueArray)
+// //   return keys;
+// // });
+// // console.log(newIssuesArrays[0]);
+// // let issueArray = [];
 
+// //let issueArray = newIssuesArrays[0];
+// //console.log("issueArray", issueArray);
+// // console.log("issueArray", issueArray);
+// // Object.values(issueArray).map((i) => {
+// //   console.log(i)
+// // } )
+// //setIssueArray(newIssuesArrays[0])
 
+// //Skapa ett object där issues är "keys" och minEstimate är "values"
+// let objectMinEstimate = {};
+// newArray.forEach((item, i) => (objectMinEstimate[item] = minEstimate[i]));
+// console.log("objectMinEstimate", objectMinEstimate);
+// console.log(Object.keys(objectMinEstimate));
+// console.log(Object.values(objectMinEstimate));
 
-  // // // plocka ut alla issues och lägg i en ny/egen array
-  // // const newIssuesArrays = answers.map((answer) => {
-  // //   const keys = Object.keys(answer.IssueTimeObj);
-  // //   return keys;
-  // // });
-  // // let issueArray = newIssuesArrays[0];
-  // // console.log("issueArray", issueArray);
+// Skapa ett object där issues är "keys" och maxEstimate är "values"
+//  let objectMaxEstimates = {}
+// issueArray.forEach((item, i ) => (objectMaxEstimates[item] =  maxEstimate[i]))
+//  console.log(objectMaxEstimates)
+//test arrays
 
-  // // // plocka ut alla issues och lägg i en ny/egen array
-  // // const newIssuesArrays = answers.map((answer) => {
-  // //   const keys = Object.keys(answer.IssueTimeObj);
-  // //   console.log("keys", keys)
-  // //   Object.values(keys).map((i)=>{
-  // //     issueArray.push(i);
-  // //   })
-  // //   console.log(issueArray)
-  // //   return keys;
-  // // });
-  // // console.log(newIssuesArrays[0]);
-  // // let issueArray = [];
+// onToggle
 
-  // //let issueArray = newIssuesArrays[0];
-  // //console.log("issueArray", issueArray);
-  // // console.log("issueArray", issueArray);
-  // // Object.values(issueArray).map((i) => {
-  // //   console.log(i)
-  // // } )
-  // //setIssueArray(newIssuesArrays[0])
-
-  // //Skapa ett object där issues är "keys" och minEstimate är "values"
-  // let objectMinEstimate = {};
-  // newArray.forEach((item, i) => (objectMinEstimate[item] = minEstimate[i]));
-  // console.log("objectMinEstimate", objectMinEstimate);
-  // console.log(Object.keys(objectMinEstimate));
-  // console.log(Object.values(objectMinEstimate));
-
-  // Skapa ett object där issues är "keys" och maxEstimate är "values"
-  //  let objectMaxEstimates = {}
-  // issueArray.forEach((item, i ) => (objectMaxEstimates[item] =  maxEstimate[i]))
-  //  console.log(objectMaxEstimates)
-  //test arrays
-
-  // onToggle
-
-  // Tooggle DIV
-  // const onToggleMin = () => {
-  //   setShowResaultDivMin(!showResaultDivMin);
-  // };
-  // const onToggleMax = () => {
-  //   setShowResaultDivMax(!showResaultDivMax);
-  // };
-  // const onToggleMedel = () => {
-  //   setShowResaultDivMedel(!showResaultDivMedel);
-  // };
-  // const onToggleMedian = () => {
-  //   setShowResaultDivMedian(!showResaultDivMedian);
-  // };
+// Tooggle DIV
+// const onToggleMin = () => {
+//   setShowResaultDivMin(!showResaultDivMin);
+// };
+// const onToggleMax = () => {
+//   setShowResaultDivMax(!showResaultDivMax);
+// };
+// const onToggleMedel = () => {
+//   setShowResaultDivMedel(!showResaultDivMedel);
+// };
+// const onToggleMedian = () => {
+//   setShowResaultDivMedian(!showResaultDivMedian);
+// };
