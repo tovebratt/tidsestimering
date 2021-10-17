@@ -26,6 +26,73 @@ const ShowResault = ({ answers, minEstimate, maxEstimate, issues }) => {
   });
   console.log(newArray);
 
+
+  return (
+    <div>
+      <div className="result">
+        <button className="btn" onClick={() =>setShowResaultDivMin(!showResaultDivMin)}>
+          Gissningar lägsta värden
+        </button>
+        {showResaultDivMin && (
+          <div className="flex">
+            <ul>
+              {issues.map((issue) => (
+                <li key={issue.id}>
+                  {issue.issue} <span> </span>
+                </li>
+              ))}
+            </ul>
+            <ul>
+              {minEstimate.map((estimate) => (
+                <li>{estimate} Timmar </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+      <div className="result">
+        <button className="btn" onClick={()=> setShowResaultDivMax(!showResaultDivMax)}>
+          Gissningar högsta värden
+        </button>
+        {showResaultDivMax && (
+          <div className="flex">
+            <ul>
+              {issues.map((issue) => (
+                <li>
+                  {issue.issue} <span> </span>
+                </li>
+              ))}
+            </ul>
+            <ul>
+              {maxEstimate.map((estimate) => (
+                <li>{estimate} Timmar </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+      <div className="result">
+        <button className="btn" onClick={() => setShowResaultDivMedel(!showResaultDivMedel)}>
+          Medel värden
+        </button>
+        {showResaultDivMedel && <div className="flex"></div>}
+      </div>
+      <div className="result">
+        <button className="btn" onClick={()=> setShowResaultDivMedian(!showResaultDivMedian)}>
+
+          Median värden
+        </button>
+        {showResaultDivMedian && <div className="flex"></div>}
+      </div>
+    </div>
+  );
+};
+
+export default ShowResault;
+
+
+
+
   // // // plocka ut alla issues och lägg i en ny/egen array
   // // const newIssuesArrays = answers.map((answer) => {
   // //   const keys = Object.keys(answer.IssueTimeObj);
@@ -71,81 +138,15 @@ const ShowResault = ({ answers, minEstimate, maxEstimate, issues }) => {
   // onToggle
 
   // Tooggle DIV
-  const onToggleMin = () => {
-    setShowResaultDivMin(!showResaultDivMin);
-  };
-  const onToggleMax = () => {
-    setShowResaultDivMax(!showResaultDivMax);
-  };
-  const onToggleMedel = () => {
-    setShowResaultDivMedel(!showResaultDivMedel);
-  };
-  const onToggleMedian = () => {
-    setShowResaultDivMedian(!showResaultDivMedian);
-  };
-
-  return (
-    <div>
-      <div className="result">
-        <button className="btn" onClick={onToggleMin}>
-          {" "}
-          Gissningar lägsta värden
-        </button>
-        {showResaultDivMin && (
-          <div className="flex">
-            <ul>
-              {issues.map((issue) => (
-                <li>
-                  {issue.issue} <span> </span>
-                </li>
-              ))}
-            </ul>
-            <ul>
-              {minEstimate.map((estimate) => (
-                <li>{estimate} Timmar </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-      <div className="result">
-        <button className="btn" onClick={onToggleMax}>
-          {" "}
-          Gissningar högsta värden
-        </button>
-        {showResaultDivMax && (
-          <div className="flex">
-            <ul>
-              {issues.map((issue) => (
-                <li>
-                  {issue.issue} <span> </span>
-                </li>
-              ))}
-            </ul>
-            <ul>
-              {maxEstimate.map((estimate) => (
-                <li>{estimate} Timmar </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-      <div className="result">
-        <button className="btn" onClick={onToggleMedel}>
-          {" "}
-          Medel värden
-        </button>
-        {showResaultDivMedel && <div className="flex"></div>}
-      </div>
-      <div className="result">
-        <button className="btn" onClick={onToggleMedian}>
-          {" "}
-          Median värden
-        </button>
-        {showResaultDivMedian && <div className="flex"></div>}
-      </div>
-    </div>
-  );
-};
-
-export default ShowResault;
+  // const onToggleMin = () => {
+  //   setShowResaultDivMin(!showResaultDivMin);
+  // };
+  // const onToggleMax = () => {
+  //   setShowResaultDivMax(!showResaultDivMax);
+  // };
+  // const onToggleMedel = () => {
+  //   setShowResaultDivMedel(!showResaultDivMedel);
+  // };
+  // const onToggleMedian = () => {
+  //   setShowResaultDivMedian(!showResaultDivMedian);
+  // };
