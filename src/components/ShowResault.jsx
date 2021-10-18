@@ -13,22 +13,48 @@ const ShowResault = ({ answers, minEstimate, maxEstimate, issues }) => {
   const [showResaultDivMax, setShowResaultDivMax] = useState(true);
   const [showResaultDivMedel, setShowResaultDivMedel] = useState(false);
   const [showResaultDivMedian, setShowResaultDivMedian] = useState(false);
+  let newArray = [];
+  let arrayTime = [];
+  let arrayIssues = [];
+  let objectMinEstimate = {};
+  let newObj = {};
 
   //console.log("minEstimate", minEstimate);
   //console.log("maxEstimate", maxEstimate);
   // console.log(answers[0].IssueTimeObj);
 
   // plocka ut alla issues och lägg i en ny/egen array
-  let newArray = [];
   const newArrayOfAllIssues = issues.forEach((issue) => {
     //console.log(issue.issue);
     newArray.push(issue.issue);
   });
-  //console.log(newArray);
+  console.log("newArray", newArray); //
 
-  // creatte an array of numbers
-  let keyArray = Array.from(Array(200).keys());
-  //console.log(keyArray);
+  //Skapa ett object där issues är "keys" och minEstimate är "values"
+  newArray.forEach((item, i) => (objectMinEstimate[item] = minEstimate[i]));
+  console.log("objectMinEstimate", objectMinEstimate);
+  //console.log(Object.keys(objectMinEstimate));
+  //console.log(Object.values(objectMinEstimate));
+
+  //plocka ut object.values och sätt vajre i en array av objetcs
+  Object.values(objectMinEstimate).map((time) => {
+    arrayTime.push({
+      time: time,
+    });
+  });
+  console.log("arrayTime", arrayTime);
+
+  //plocka ut object.key och sätt vajre i en array av objetcs
+  Object.keys(objectMinEstimate).map((key) => {
+    arrayIssues.push({
+      key: key,
+    });
+  });
+  console.log("arrayIssues", arrayIssues);
+
+  //
+  arrayIssues.forEach((item, i) => (newObj[item] = arrayTime[i]));
+  console.log("newObj", newObj);
 
   return (
     <div>
