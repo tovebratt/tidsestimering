@@ -152,12 +152,14 @@ function App() {
         <AddIssue onAdd={onAdd} />
       </div>
   
+      {!votingFinished &&
       <div className="container">
         <Vote issues={issues} onVote={onVote} answers={answers} />
-      </div>
+      </div>}
+      {votingFinished &&
       <div className="container result-container">
         <ShowResault answers={answers} minEstimate={minEstimate} maxEstimate={maxEstimate}/>
-      </div>
+      </div>}
     </div>
   );
   }
