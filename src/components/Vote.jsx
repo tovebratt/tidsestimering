@@ -42,7 +42,7 @@ const Vote = ({ issues, onVote, answers }) => {
 
   return (
     <form onSubmit={onSubmit}>
-       <select  onChange={(e) => setuserId(...userId, e.target.value)}>
+       <select  onChange={(e) => setuserId(...userId, e.target.value)} required>
         <option>välj person...</option>
         {answers.map((answers)=> {
           return answers.voted ? <option disabled  id={answers.id} value={answers.id} key={answers.id}>{answers.name}</option> : 
@@ -59,6 +59,7 @@ const Vote = ({ issues, onVote, answers }) => {
             {issue.issue}
           </h3>
           <input
+          required
             type="number"
             placeholder="hours"
             onChange={(e) => setTime([...time, e.target.value])}
