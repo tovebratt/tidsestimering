@@ -3,7 +3,8 @@ import AddIssue from "./components/AddIssue";
 //import Show from "./components/Show";
 import Vote from "./components/Vote";
 import ShowResault from "./components/ShowResault";
-import FormatData from "./components/FormatData"; //Rebecka
+import FormatData from "./components/FormatData";
+import HasEveryoneVoted from "./components/HasEveryoneVoted";
 import { useState, useEffect } from "react";
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
   const [answers, setAnswers] = useState([]);
   const [minEstimate, setMinEstimate] = useState([]);
   const [maxEstimate, setMaxEstimate] = useState([]);
-
+  const [votingFinished, setVotingFinished] = useState();
   // setIssues  & setAnswers från Data
   useEffect(() => {
     const getIssues = async () => {
@@ -23,11 +24,12 @@ function App() {
     };
     getIssues();
   }, []);
+  
+  //sätter votingFinished till true om alla svarat
+  useEffect(()=>{setVotingFinished(HasEveryoneVoted(answers))}, [answers]) 
 
-  //Rebecka, test. Här ska nog Toves beräkningar köras med min data som prop, 
-  // sedan sak resultatet av dem stoppas i något state som ska in som prop i ShowResault-komponenten??:
-  // useEffect(()=>{if(answers.length){console.log("alla tidsgissningar: ", FormatData(answers))}}, [answers])
-  useEffect(()=>{if(answers.length && answers[0].IssueTimeObj.length){
+  //här ska det egentligen bara stå if votingFinished men pga bug kraschar det då...
+  useEffect(()=>{if(votingFinished && answers.length && answers[0].IssueTimeObj.length){
     console.log("alla tidsgissningar: ", FormatData(answers))
     
     let estimateArr= FormatData(answers);
@@ -63,7 +65,7 @@ function App() {
     console.log(averageEstimate(firstIssue));
 
 
-  }}, [answers])
+  }}, [votingFinished])
 
 
 
