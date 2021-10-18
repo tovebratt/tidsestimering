@@ -27,7 +27,7 @@ function App() {
   //Rebecka, test. Här ska nog Toves beräkningar köras med min data som prop, 
   // sedan sak resultatet av dem stoppas i något state som ska in som prop i ShowResault-komponenten??:
   // useEffect(()=>{if(answers.length){console.log("alla tidsgissningar: ", FormatData(answers))}}, [answers])
-  useEffect(()=>{if(answers.length){
+  useEffect(()=>{if(answers.length && answers[0].IssueTimeObj.length){
     console.log("alla tidsgissningar: ", FormatData(answers))
     
     let estimateArr= FormatData(answers);
