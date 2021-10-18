@@ -60,7 +60,7 @@ const Vote = ({ issues, onVote, answers }) => {
           </h3>
           <input
           required
-            type="number"
+            // type="number"
             placeholder="hours"
             onChange={(e) => setTime([...time, e.target.value])}
           />

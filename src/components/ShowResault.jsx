@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+// import { useState } from "react";
 
 // En användare skall kunna “gissa” på antalet timmar hen tror att det kommer att ta att genomföra ett issue.
 
@@ -7,30 +7,30 @@ import { useState } from "react";
 // som visar dels spannet på gissninar (högst och lägst)
 // samt medel och median -tidsåtgång per issue.
 
-const ShowResault = ({ answers, minEstimate, maxEstimate }) => {
-  const [allResults, setAllResults] = useState({});
+const ShowResault = ({ answers, allCalc }) => {
+  // const [allResults, setAllResults] = useState({});
   console.log(answers);
-  console.log(minEstimate);
-  console.log(maxEstimate);
-  // console.log(answers[0].IssueTimeObj);
-  
-  
+  console.log(allCalc);
 
 
   return (
     <div>
-      <div className="result">
-        <button className="btn">Median</button>
-        <h2>5 h </h2>
-      </div>
-      <div className="result">
-        <button className="btn">Median</button>
-        <h2>5 h </h2>
-      </div>
-      <div className="result">
-        <button className="btn">högsta-lägsta</button>
-        <h2>5 h </h2>
-      </div>
+      <table>
+        <thead>
+          <tr className="result">
+            <th>ISSUE</th>
+            <th>MIN</th>
+            <th>MAX</th>
+            <th>MEDIAN</th>
+            <th>MEDEL</th>
+          </tr>
+        </thead>
+        <tbody>
+        {allCalc.map((issue, i) => {
+          return <tr className="result" key={i}><td>{issue[0]}</td><td>{issue[1]}</td><td>{issue[2]}</td><td>{issue[3]}</td><td>{issue[4]}</td></tr>
+        })}
+        </tbody>
+      </table>
     </div>
   );
 };
