@@ -131,9 +131,9 @@ function App() {
   };
 
   const onVote = async (answer) => {
-    //console.log(answer);
-    const res = await fetch("http://localhost:3000/answers", {
-      method: "POST",
+    console.log(answer); 
+    const res = await fetch("http://localhost:3000/answers/" + answer.id, {
+      method: "PATCH",
       headers: {
         "Content-type": "application/json",
       },
@@ -149,16 +149,16 @@ function App() {
       <div className="container">
         <AddIssue onAdd={onAdd} />
       </div>
-
+  
       <div className="container">
-        <Vote issues={issues} onVote={onVote} />
+        <Vote issues={issues} onVote={onVote} answers={answers} />
       </div>
       <div className="container result-container">
         <ShowResault answers={answers} minEstimate={minEstimate} maxEstimate={maxEstimate}/>
       </div>
     </div>
   );
-}
+  }
 
 {
   /* <div className="container">

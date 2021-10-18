@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 
-const Vote = ({ issues, onVote }) => {
-  const [name, setName] = useState("");
+const Vote = ({ issues, onVote, answers }) => {
+  const [userId, setuserId] = useState('');
   const [issue, setIssue] = useState([]);
   const [time, setTime] = useState([]);
 
@@ -26,7 +26,8 @@ const Vote = ({ issues, onVote }) => {
 
     // skapa ett object som vi skall skicka till våran DB med samlad info från formuläret
     const answer = {
-      name: name,
+      id: userId,
+      voted: true,
       IssueTimeObj: newObject,
     };
     console.log("answer", answer);
@@ -35,20 +36,18 @@ const Vote = ({ issues, onVote }) => {
     onVote(answer);
 
     // nollsäller våra states
-    setName("");
     setIssue([]);
     setTime([]);
   };
 
   return (
     <form onSubmit={onSubmit}>
-      <select onChange={(e) => setName(e.target.value)}>
+       <select  onChange={(e) => setuserId(...userId, e.target.value)}>
         <option>välj person...</option>
-        <option value="Antonia">Antonia</option>
-        <option value="Johanna">Johanna</option>
-        <option value="Tove">Tove</option>
-        <option value="Olesia">Olesia</option>
-        <option value="Rebecka">Rebecka</option>
+        {answers.map((answers)=> {
+          return answers.voted ? <option disabled  id={answers.id} value={answers.id} key={answers.id}>{answers.name}</option> : 
+          <option id={answers.id} value={answers.id} key={answers.id}>{answers.name}</option>
+        })}
       </select>
       {issues.map((issue) => (
         <div className="issue" key={issue.id}>
