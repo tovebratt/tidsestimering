@@ -3,20 +3,43 @@
     {
       "id": 1,
       "name": "Olesia",
-      "voted": false,
+      "voted": true,
       "IssueTimeObj": {}
     },
     {
       "id": 2,
       "name": "Joanna",
-      "voted": false,
-      "IssueTimeObj": {}
+      "voted": true,
+      "IssueTimeObj": {
+        "bugg: input hämtas onchange istället för onsubmit": 1,
+        "css": 11,
+        "Hämta projektnamn från github-api och skriva ut": 1,
+        "Tömma input vid submit": 11,
+        "Funktion att inte kunna rösta flera ggr": 1,
+        "extra feature: ta bort namn ur listan när personen svarat": 11,
+        "State-hantering för att visa rapport": 1,
+        "Uträkningar resultat": 11,
+        "Komponent visa rapport": 1,
+        "Initial committ": 11,
+        "API github": 2
+      }
     },
     {
       "id": 3,
       "name": "Antonia",
-      "voted": false,
+      "voted": true,
       "IssueTimeObj": {
+        "bugg: input hämtas onchange istället för onsubmit": 1,
+        "css": 11,
+        "Hämta projektnamn från github-api och skriva ut": 1,
+        "Tömma input vid submit": 11,
+        "Funktion att inte kunna rösta flera ggr": 1,
+        "extra feature: ta bort namn ur listan när personen svarat": 11,
+        "State-hantering för att visa rapport": 1,
+        "Uträkningar resultat": 11,
+        "Komponent visa rapport": 1,
+        "Initial committ": 11,
+        "API github": 1
       }
     },
     {

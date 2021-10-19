@@ -1,5 +1,5 @@
 import Header from "./components/Header";
-import AddIssue from "./components/AddIssue";
+// import AddIssue from "./components/AddIssue";
 //import Show from "./components/Show";
 import Vote from "./components/Vote";
 import ShowResault from "./components/ShowResault";
@@ -11,9 +11,9 @@ function App() {
   // states
   const [issues, setIssues] = useState([]);
   const [answers, setAnswers] = useState([]);
-  const [minEstimate, setMinEstimate] = useState([]);
-  const [maxEstimate, setMaxEstimate] = useState([]);
+  const [allCalc, setAllCalc] = useState([]);
   const [votingFinished, setVotingFinished] = useState();
+  
   // setIssues  & setAnswers från Data
   useEffect(() => {
     const getIssues = async () => {
@@ -28,42 +28,47 @@ function App() {
   //sätter votingFinished till true om alla svarat
   useEffect(()=>{setVotingFinished(HasEveryoneVoted(answers))}, [answers]) 
 
-  //här ska det egentligen bara stå if votingFinished men pga bug kraschar det då...
-  useEffect(()=>{if(votingFinished && answers.length && answers[0].IssueTimeObj.length){
+  // Time estimation calculations
+  useEffect(()=>{if(votingFinished){
     console.log("alla tidsgissningar: ", FormatData(answers))
+    // console.log(answers);
     
     let estimateArr= FormatData(answers);
     console.log(estimateArr);
-    console.log(estimateArr[0].estimates);
 
     // Calc min
     const minEstimate = estimateArr.map((issue) => Math.min(...issue.estimates));
-    console.log(minEstimate);
-    setMinEstimate(minEstimate);
+    console.log("MIN", minEstimate);
+    // setMinEstimate(minEstimate);
 
     // Calc max
     const maxEstimate = estimateArr.map((issue) => Math.max(...issue.estimates));
-    console.log(maxEstimate);
-    setMaxEstimate(maxEstimate);
+    console.log("MAX",maxEstimate);
+    // setMaxEstimate(maxEstimate);
 
-
-    // Calc median
+    // All estimates array
     const allEstimates = estimateArr.map((issue) => issue.estimates);
     console.log(allEstimates);
 
-    let firstIssue = estimateArr[0].estimates;
-
-    const medianEstimate = firstIssue => {
-      const mid = Math.floor(firstIssue.length / 2),
-        nums = [...firstIssue].sort((a, b) => a - b);
-      return firstIssue.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
+    // Calk median
+    const medianEstimateCalc = arr => {
+      const mid = Math.floor(arr.length / 2),
+        nums = [...arr].sort((a, b) => a - b);
+      return arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
     };
-    console.log(medianEstimate(firstIssue));
+  
+    const medianEstimate = estimateArr.map((issue) => medianEstimateCalc(issue.estimates));
+    console.log("MEDIAN",medianEstimate);
 
     // Calc average
-    const averageEstimate = arr => arr.reduce((a,b) => a + b, 0) / arr.length;
-    console.log(averageEstimate(firstIssue));
+    const averageEstimateCalc = arr => arr.reduce((a,b) => a + b, 0) / arr.length;
+    const averageEstimate = estimateArr.map((issue) => Math.round(averageEstimateCalc(issue.estimates)));
+    console.log("MEDEL", averageEstimate);
 
+    // Merge calculations to one array
+    let allCalc = estimateArr.map((issue, i) => [issue.issue, minEstimate[i], maxEstimate[i], medianEstimate[i], averageEstimate[i]]);
+    console.log(allCalc);
+    setAllCalc(allCalc);
 
   }}, [votingFinished])
 
@@ -119,18 +124,18 @@ function App() {
   };
 
   // callback functions
-  const onAdd = async (issue) => {
-    console.log(issue);
-    const res = await fetch("http://localhost:3000/issues", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(issue),
-    });
-    const data = await res.json();
-    setIssues([...issues, data]);
-  };
+  // const onAdd = async (issue) => {
+  //   console.log(issue);
+  //   const res = await fetch("http://localhost:3000/issues", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-type": "application/json",
+  //     },
+  //     body: JSON.stringify(issue),
+  //   });
+  //   const data = await res.json();
+  //   setIssues([...issues, data]);
+  // };
 
   const onVote = async (answer) => {
     console.log(answer); 
@@ -143,18 +148,19 @@ function App() {
     });
     const data = await res.json();
     setAnswers([...answers, data]);
+    console.log(answers)
   };
 
   return (
     <div>
       <Header />
-      <div className="container">
+      {/* <div className="container">
         <AddIssue onAdd={onAdd} />
-      </div>
+      </div> */}
   
       {votingFinished?
       <div className="container result-container">
-        <ShowResault answers={answers} minEstimate={minEstimate} maxEstimate={maxEstimate}/>
+        <ShowResault answers={answers} allCalc={allCalc}/>
       </div>
       :
       <div className="container">

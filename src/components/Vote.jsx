@@ -42,13 +42,16 @@ const Vote = ({ issues, onVote, answers }) => {
 
   return (
     <form onSubmit={onSubmit}>
-       <select  onChange={(e) => setuserId(...userId, e.target.value)} required>
-        <option value="">välj person...</option>
-        {answers.map((answers)=> {
-          return answers.voted ? <option disabled  id={answers.id} value={answers.id} key={answers.id}>{answers.name}</option> : 
-          <option id={answers.id} value={answers.id} key={answers.id}>{answers.name}</option>
-        })}
-      </select>
+      <div className="custom-select">
+        <select  onChange={(e) => setuserId(...userId, e.target.value)} required>
+          <option value="">välj person...</option>
+          {answers.map((answers)=> {
+            return answers.voted ? <option disabled  id={answers.id} value={answers.id} key={answers.id * 100}>{answers.name}</option> : 
+            <option id={answers.id} value={answers.id} key={answers.id * 100}>{answers.name}</option>
+          })}
+        </select>
+      </div>
+
       {issues.map((issue) => (
         <div className="issue" key={issue.id}>
           <h3
@@ -60,9 +63,12 @@ const Vote = ({ issues, onVote, answers }) => {
           </h3>
           <input
           required
-            type="number"
+            // type="number"
             placeholder="hours"
-            onChange={(e) => setTime([...time, e.target.value])}
+            // value={time}
+            onInput={e => setTime([...time, e.target.value])}
+            // onInput={(e) => setTime([...time, e.target.value])}
+
           />
         </div>
       ))}
