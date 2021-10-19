@@ -43,7 +43,7 @@ const Vote = ({ issues, onVote, answers }) => {
   return (
     <form onSubmit={onSubmit}>
        <select  onChange={(e) => setuserId(...userId, e.target.value)} required>
-        <option>välj person...</option>
+        <option value="">välj person...</option>
         {answers.map((answers)=> {
           return answers.voted ? <option disabled  id={answers.id} value={answers.id} key={answers.id}>{answers.name}</option> : 
           <option id={answers.id} value={answers.id} key={answers.id}>{answers.name}</option>
