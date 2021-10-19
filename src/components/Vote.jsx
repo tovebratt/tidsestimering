@@ -44,13 +44,14 @@ const Vote = ({ issues, onVote, answers }) => {
     <form onSubmit={onSubmit}>
       <div className="custom-select">
         <select  onChange={(e) => setuserId(...userId, e.target.value)} required>
-          <option>välj person...</option>
+          <option value="">välj person...</option>
           {answers.map((answers)=> {
-            return answers.voted ? <option disabled  id={answers.id} value={answers.id} key={answers.id}>{answers.name}</option> : 
-            <option id={answers.id} value={answers.id} key={answers.id}>{answers.name}</option>
+            return answers.voted ? <option disabled  id={answers.id} value={answers.id} key={answers.id * 100}>{answers.name}</option> : 
+            <option id={answers.id} value={answers.id} key={answers.id * 100}>{answers.name}</option>
           })}
         </select>
       </div>
+
       {issues.map((issue) => (
         <div className="issue" key={issue.id}>
           <h3
@@ -64,7 +65,10 @@ const Vote = ({ issues, onVote, answers }) => {
           required
             // type="number"
             placeholder="hours"
-            onChange={(e) => setTime([...time, e.target.value])}
+            // value={time}
+            onInput={e => setTime([...time, e.target.value])}
+            // onInput={(e) => setTime([...time, e.target.value])}
+
           />
         </div>
       ))}

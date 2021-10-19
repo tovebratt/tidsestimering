@@ -3,17 +3,17 @@ import Header from "./components/Header";
 //import Show from "./components/Show";
 import Vote from "./components/Vote";
 import ShowResault from "./components/ShowResault";
-import FormatData from "./components/FormatData"; //Rebecka
+import FormatData from "./components/FormatData";
+import HasEveryoneVoted from "./components/HasEveryoneVoted";
 import { useState, useEffect } from "react";
 
 function App() {
   // states
   const [issues, setIssues] = useState([]);
   const [answers, setAnswers] = useState([]);
-  // const [minEstimate, setMinEstimate] = useState([]);
-  // const [maxEstimate, setMaxEstimate] = useState([]);
   const [allCalc, setAllCalc] = useState([]);
-
+  const [votingFinished, setVotingFinished] = useState();
+  
   // setIssues  & setAnswers från Data
   useEffect(() => {
     const getIssues = async () => {
@@ -24,10 +24,12 @@ function App() {
     };
     getIssues();
   }, []);
+  
+  //sätter votingFinished till true om alla svarat
+  useEffect(()=>{setVotingFinished(HasEveryoneVoted(answers))}, [answers]) 
 
   // Time estimation calculations
-  // useEffect(()=>{if(answers.length && answers[0].IssueTimeObj.length){
-    useEffect(()=>{if(answers.length){
+  useEffect(()=>{if(votingFinished){
     console.log("alla tidsgissningar: ", FormatData(answers))
     // console.log(answers);
     
@@ -68,7 +70,7 @@ function App() {
     console.log(allCalc);
     setAllCalc(allCalc);
 
-  }}, [answers])
+  }}, [votingFinished])
 
 
 
@@ -156,12 +158,15 @@ function App() {
         <AddIssue onAdd={onAdd} />
       </div> */}
   
-      <div className="container">
-        <Vote issues={issues} onVote={onVote} answers={answers} />
-      </div>
+      {votingFinished?
       <div className="container result-container">
         <ShowResault answers={answers} allCalc={allCalc}/>
       </div>
+      :
+      <div className="container">
+        <Vote issues={issues} onVote={onVote} answers={answers} />
+      </div>
+      }
     </div>
   );
   }
