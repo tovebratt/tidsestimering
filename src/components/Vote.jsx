@@ -1,12 +1,20 @@
 import React from "react";
 import { useState } from "react";
 
-const Vote = ({ issues, onVote, answers }) => {
+const Vote = ({ issues, onVote, answers, inputs, setInputs }) => {
   const [userId, setuserId] = useState('');
-  const [issue, setIssue] = useState([]);
-  const [time, setTime] = useState([]);
+  // const [inputs, setInputs] = useState({});
+  // const [time, setTime] = useState([]);
 
-  const onSubmit = (e) => {
+  const handleInputChange = (event) => {
+    event.persist();
+    if(event.target.value)
+    {setInputs(
+      inputs => ({...inputs, [event.target.name]: parseInt(event.target.value)})
+      )};
+  }
+
+  const onSend = (e) => {
     e.preventDefault();
 
     // plocka ut alla issues och lägg i en ny/egen array
@@ -16,57 +24,60 @@ const Vote = ({ issues, onVote, answers }) => {
     });
 
     // gör om våran timeArray från string till numbers
-    let timeToNumber = time.map((i) => Number(i));
-    console.log("timeToNumber", timeToNumber);
+    // let timeToNumber = time.map((i) => Number(i));
+    // console.log("timeToNumber", timeToNumber);
 
     // Skapa ett object där issues är "keys" och time är "values"
-    let newObject = {};
-    newIssuesArray.forEach((item, i) => (newObject[item] = timeToNumber[i]));
-    console.log(newObject);
+    // let newObject = {};
+    // newIssuesArray.forEach((item, i) => (newObject[item] = timeToNumber[i]));
+    // console.log(newObject);
 
-    // skapa ett object som vi skall skicka till våran DB med samlad info från formuläret
+    //skapa ett object som vi skall skicka till våran DB med samlad info från formuläret
     const answer = {
       id: userId,
       voted: true,
-      IssueTimeObj: newObject,
+      IssueTimeObj: inputs,
     };
-    console.log("answer", answer);
 
     // Anropa våran funktion som sköter en POST request till DB. dvs sparar vårat nya object i DB.
     onVote(answer);
 
     // nollsäller våra states
-    setIssue([]);
-    setTime([]);
+    setInputs({});
+    // setTime("");
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSend}>
       <div className="custom-select">
-        <select  onChange={(e) => setuserId(...userId, e.target.value)} required>
+        <select onChange={(e) => setuserId(e.target.value)} required>
           <option value="">välj person...</option>
           {answers.map((answers)=> {
             return answers.voted ? <option disabled  id={answers.id} value={answers.id} key={answers.id * 100}>{answers.name}</option> : 
-            <option id={answers.id} value={answers.id} key={answers.id * 100}>{answers.name}</option>
+            <option id={answers.id} value={answers.id} key={answers.id}>{answers.name}</option>
           })}
         </select>
       </div>
 
       {issues.map((issue) => (
+
         <div className="issue" key={issue.id}>
           <h3
             id={issue.id}
-            onSubmit={(e) => setIssue([...issue, e.target.value])}
+            // onSubmit={(e) => setIssue([e.target.value])}
             value={issue.issue}
           >
             {issue.issue}
           </h3>
           <input
           required
-            // type="number"
+            type="number"
+            min="0"
+            name={issue.issue}
             placeholder="hours"
-            // value={time}
-            onInput={e => setTime([...time, e.target.value])}
+            value={inputs[issue.issue]}
+            onChange={e=>handleInputChange(e)}
+            // onChange={e => setTime([...time, e.target.value])}
             // onInput={(e) => setTime([...time, e.target.value])}
 
           />

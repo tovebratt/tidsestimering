@@ -4,7 +4,15 @@
       "id": 1,
       "name": "Olesia",
       "voted": true,
-      "IssueTimeObj": {}
+      "IssueTimeObj": {
+        "bugg: input hämtas onchange istället för onsubmit": 1,
+        "css": 2,
+        "Hämta projektnamn från github-api och skriva ut": 3,
+        "Tömma input vid submit": 4,
+        "extra feature: ta bort namn ur listan när personen svarat": 5,
+        "Komponent visa rapport": 6,
+        "API github": 7
+      }
     },
     {
       "id": 2,
@@ -45,14 +53,38 @@
     {
       "id": 4,
       "name": "Tove",
-      "voted": false,
-      "IssueTimeObj": {}
+      "voted": true,
+      "IssueTimeObj": {
+        "bugg: input hämtas onchange istället för onsubmit": 2,
+        "css": 2,
+        "Hämta projektnamn från github-api och skriva ut": 2,
+        "Tömma input vid submit": 3,
+        "Funktion att inte kunna rösta flera ggr": 3,
+        "extra feature: ta bort namn ur listan när personen svarat": 3,
+        "State-hantering för att visa rapport": 4,
+        "Uträkningar resultat": 4,
+        "Komponent visa rapport": 4,
+        "Initial committ": 5,
+        "API github": 5
+      }
     },
     {
       "id": 5,
       "name": "Rebecka",
-      "voted": false,
-      "IssueTimeObj": {}
+      "voted": true,
+      "IssueTimeObj": {
+        "bugg: input hämtas onchange istället för onsubmit": 1,
+        "css": 1,
+        "Hämta projektnamn från github-api och skriva ut": 1,
+        "Tömma input vid submit": 1,
+        "Funktion att inte kunna rösta flera ggr": 1,
+        "extra feature: ta bort namn ur listan när personen svarat": 1,
+        "State-hantering för att visa rapport": 1,
+        "Uträkningar resultat": 1,
+        "Komponent visa rapport": 1,
+        "Initial committ": 1,
+        "API github": 1
+      }
     }
   ]
 }

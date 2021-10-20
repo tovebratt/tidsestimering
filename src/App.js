@@ -13,6 +13,7 @@ function App() {
   const [answers, setAnswers] = useState([]);
   const [allCalc, setAllCalc] = useState([]);
   const [votingFinished, setVotingFinished] = useState();
+  const [inputs, setInputs] = useState({});
   
   // setIssues  & setAnswers från Data
   useEffect(() => {
@@ -138,7 +139,7 @@ function App() {
   // };
 
   const onVote = async (answer) => {
-    console.log(answer); 
+    console.log("röstat", answer); 
     const res = await fetch("http://localhost:3000/answers/" + answer.id, {
       method: "PATCH",
       headers: {
@@ -164,7 +165,7 @@ function App() {
       </div>
       :
       <div className="container">
-        <Vote issues={issues} onVote={onVote} answers={answers} />
+        <Vote issues={issues} onVote={onVote} answers={answers} inputs={inputs} setInputs={setInputs}/>
       </div>
       }
     </div>
