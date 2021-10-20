@@ -75,7 +75,7 @@ const Vote = ({ issues, onVote, answers, inputs, setInputs }) => {
             min="0"
             name={issue.issue}
             placeholder="hours"
-            value={inputs[issue.issue]}
+            value={inputs[issue.issue] || ""}
             onChange={e=>handleInputChange(e)}
             // onChange={e => setTime([...time, e.target.value])}
             // onInput={(e) => setTime([...time, e.target.value])}
