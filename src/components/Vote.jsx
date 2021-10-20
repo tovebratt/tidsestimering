@@ -1,36 +1,22 @@
-import React from "react";
 import { useState } from "react";
 
 const Vote = ({ issues, onVote, answers, inputs, setInputs }) => {
   const [userId, setuserId] = useState('');
-  // const [inputs, setInputs] = useState({});
-  // const [time, setTime] = useState([]);
 
+  //sparar inputs i state när man skriver i fälten
   const handleInputChange = (event) => {
-    event.persist();
     if(event.target.value)
     {setInputs(
       inputs => ({...inputs, [event.target.name]: parseInt(event.target.value)})
       )};
   }
 
-  const onSend = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-
     // plocka ut alla issues och lägg i en ny/egen array
     const newIssuesArray = issues.map((issue) => {
-      console.log(issue.issue);
       return issue.issue;
     });
-
-    // gör om våran timeArray från string till numbers
-    // let timeToNumber = time.map((i) => Number(i));
-    // console.log("timeToNumber", timeToNumber);
-
-    // Skapa ett object där issues är "keys" och time är "values"
-    // let newObject = {};
-    // newIssuesArray.forEach((item, i) => (newObject[item] = timeToNumber[i]));
-    // console.log(newObject);
 
     //skapa ett object som vi skall skicka till våran DB med samlad info från formuläret
     const answer = {
@@ -42,13 +28,12 @@ const Vote = ({ issues, onVote, answers, inputs, setInputs }) => {
     // Anropa våran funktion som sköter en POST request till DB. dvs sparar vårat nya object i DB.
     onVote(answer);
 
-    // nollsäller våra states
+    // nollställer vårt state
     setInputs({});
-    // setTime("");
   };
 
   return (
-    <form onSubmit={onSend}>
+    <form onSubmit={onSubmit}>
       <div className="custom-select">
         <select onChange={(e) => setuserId(e.target.value)} required>
           <option value="">välj person...</option>
@@ -64,7 +49,6 @@ const Vote = ({ issues, onVote, answers, inputs, setInputs }) => {
         <div className="issue" key={issue.id}>
           <h3
             id={issue.id}
-            // onSubmit={(e) => setIssue([e.target.value])}
             value={issue.issue}
           >
             {issue.issue}
@@ -72,14 +56,11 @@ const Vote = ({ issues, onVote, answers, inputs, setInputs }) => {
           <input
           required
             type="number"
-            min="0"
+            min="0" //gör så att det inte går att skriva negativa tal
             name={issue.issue}
             placeholder="hours"
-            value={inputs[issue.issue] || ""}
+            value={inputs[issue.issue] || ""} //den måste ha ett startvärde, det blir en tom sträng
             onChange={e=>handleInputChange(e)}
-            // onChange={e => setTime([...time, e.target.value])}
-            // onInput={(e) => setTime([...time, e.target.value])}
-
           />
         </div>
       ))}
@@ -89,10 +70,3 @@ const Vote = ({ issues, onVote, answers, inputs, setInputs }) => {
 };
 
 export default Vote;
-
-/// exemplen hur vi kan slå ihop två arrays till key pair values
-// var keys = ["foo", "bar", "baz"];
-// var values = [11, 22, 33];
-// var result = {};
-// keys.forEach((key, i) => (result[key] = values[i]));
-// console.log(result);

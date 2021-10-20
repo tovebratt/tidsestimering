@@ -13,7 +13,7 @@ function App() {
   const [answers, setAnswers] = useState([]);
   const [allCalc, setAllCalc] = useState([]);
   const [votingFinished, setVotingFinished] = useState();
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({}); //ett state för input-fältens innehåll
   
   // setIssues  & setAnswers från Data
   useEffect(() => {
@@ -139,7 +139,6 @@ function App() {
   // };
 
   const onVote = async (answer) => {
-    console.log("röstat", answer); 
     const res = await fetch("http://localhost:3000/answers/" + answer.id, {
       method: "PATCH",
       headers: {
