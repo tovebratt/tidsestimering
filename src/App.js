@@ -14,6 +14,7 @@ function App() {
   const [allCalc, setAllCalc] = useState([]);
   const [votingFinished, setVotingFinished] = useState();
   const [inputs, setInputs] = useState({}); //ett state för input-fältens innehåll
+  const [userId, setuserId] = useState('');
   
   // setIssues  & setAnswers från Data
   useEffect(() => {
@@ -164,7 +165,7 @@ function App() {
       </div>
       :
       <div className="container">
-        <Vote issues={issues} onVote={onVote} answers={answers} inputs={inputs} setInputs={setInputs}/>
+        <Vote issues={issues} onVote={onVote} answers={answers} inputs={inputs} setInputs={setInputs} userId={userId} setuserId={setuserId}/>
       </div>
       }
     </div>

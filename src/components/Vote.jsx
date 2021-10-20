@@ -1,22 +1,14 @@
-import { useState } from "react";
-
-const Vote = ({ issues, onVote, answers, inputs, setInputs }) => {
-  const [userId, setuserId] = useState('');
-
+const Vote = ({ issues, onVote, answers, inputs, setInputs, userId, setuserId}) => {
+  
   //sparar inputs i state när man skriver i fälten
   const handleInputChange = (event) => {
-    if(event.target.value)
     {setInputs(
-      inputs => ({...inputs, [event.target.name]: parseInt(event.target.value)})
+      inputs => ({...inputs, [event.target.name]: Number(event.target.value)})
       )};
   }
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // plocka ut alla issues och lägg i en ny/egen array
-    const newIssuesArray = issues.map((issue) => {
-      return issue.issue;
-    });
 
     //skapa ett object som vi skall skicka till våran DB med samlad info från formuläret
     const answer = {
