@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 
 const Vote = ({ issues, onVote, answers }) => {
-  const [userId, setuserId] = useState('');
+  const [userId, setuserId] = useState("");
   const [issue, setIssue] = useState([]);
   const [time, setTime] = useState([]);
 
@@ -39,15 +39,35 @@ const Vote = ({ issues, onVote, answers }) => {
     setIssue([]);
     setTime([]);
   };
+  function randomKey(x) {
+    return Math.random(x) * 500;
+  }
+  // console.log(randomKey(2));
 
   return (
     <form onSubmit={onSubmit}>
       <div className="custom-select">
-        <select  onChange={(e) => setuserId(...userId, e.target.value)} required>
+        <select onChange={(e) => setuserId(...userId, e.target.value)} required>
           <option value="">välj person...</option>
-          {answers.map((answers)=> {
-            return answers.voted ? <option disabled  id={answers.id} value={answers.id} key={answers.id * 100}>{answers.name}</option> : 
-            <option id={answers.id} value={answers.id} key={answers.id * 100}>{answers.name}</option>
+          {answers.map((answers) => {
+            return answers.voted ? (
+              <option
+                disabled
+                id={answers.id}
+                value={answers.id}
+                key={answers.id * 100}
+              >
+                {answers.name}
+              </option>
+            ) : (
+              <option
+                id={answers.id}
+                value={answers.id}
+                key={randomKey(answers.id)}
+              >
+                {answers.name}
+              </option>
+            );
           })}
         </select>
       </div>
@@ -62,13 +82,12 @@ const Vote = ({ issues, onVote, answers }) => {
             {issue.issue}
           </h3>
           <input
-          required
+            required
             // type="number"
             placeholder="hours"
             // value={time}
-            onInput={e => setTime([...time, e.target.value])}
+            onInput={(e) => setTime([...time, e.target.value])}
             // onInput={(e) => setTime([...time, e.target.value])}
-
           />
         </div>
       ))}
