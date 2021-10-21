@@ -148,6 +148,7 @@ function App() {
     });
     const data = await res.json();
     answers.forEach(function(answer, i) { if (answer.id === data.id) answers[i] = data; });
+    setAnswers([]); //fusk! här töms answers för att trigga en omrendering
     setAnswers(answers);
   };
 
