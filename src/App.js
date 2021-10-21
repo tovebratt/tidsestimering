@@ -147,8 +147,8 @@ function App() {
       body: JSON.stringify(answer),
     });
     const data = await res.json();
-    setAnswers([...answers, data]);
-    console.log(answers)
+    answers.forEach(function(answer, i) { if (answer.id === data.id) answers[i] = data; });
+    setAnswers(answers);
   };
 
   return (

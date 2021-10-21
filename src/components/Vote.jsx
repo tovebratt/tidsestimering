@@ -2,7 +2,6 @@ import { useState } from "react";
 
 const Vote = ({ issues, onVote, answers, inputs, setInputs }) => {
   const [userId, setuserId] = useState('');
-
   //sparar inputs i state när man skriver i fälten
   const handleInputChange = (event) => {
     setInputs(
@@ -25,6 +24,7 @@ const Vote = ({ issues, onVote, answers, inputs, setInputs }) => {
 
     // nollställer vårt state
     setInputs({});
+    setuserId("")
   };
 
   return (
