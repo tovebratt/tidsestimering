@@ -1,18 +1,6 @@
 import React from "react";
-// import { useState } from "react";
 
-// En användare skall kunna “gissa” på antalet timmar hen tror att det kommer att ta att genomföra ett issue.
-
-// När sedan alla användare har “gissat” på samtliga issues skapas en rapport
-// som visar dels spannet på gissninar (högst och lägst)
-// samt medel och median -tidsåtgång per issue.
-
-const ShowResault = ({ answers, allCalc }) => {
-  // const [allResults, setAllResults] = useState({});
-  console.log(answers);
-  console.log(allCalc);
-
-
+const ShowResult = ({ allCalc }) => {
   return (
     <div>
       <table>
@@ -35,4 +23,4 @@ const ShowResault = ({ answers, allCalc }) => {
   );
 };
 
-export default ShowResault;
+export default ShowResult;

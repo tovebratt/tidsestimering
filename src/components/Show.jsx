@@ -2,7 +2,6 @@ import React from "react";
 import Issue from "./Issue";
 
 const Show = ({ issues }) => {
-  //console.group(issues);
   return (
     <div>
       <h1> Project issues : {issues.project}</h1>

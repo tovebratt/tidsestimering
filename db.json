@@ -3,16 +3,8 @@
     {
       "id": 1,
       "name": "Olesia",
-      "voted": true,
-      "IssueTimeObj": {
-        "bugg: input hämtas onchange istället för onsubmit": 1,
-        "css": 2,
-        "Hämta projektnamn från github-api och skriva ut": 3,
-        "Tömma input vid submit": 4,
-        "extra feature: ta bort namn ur listan när personen svarat": 5,
-        "Komponent visa rapport": 6,
-        "API github": 7
-      }
+      "voted": false,
+      "IssueTimeObj": {}
     },
     {
       "id": 2,

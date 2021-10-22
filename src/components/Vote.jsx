@@ -24,7 +24,7 @@ const Vote = ({ issues, onVote, answers, inputs, setInputs }) => {
 
     // nollställer vårt state
     setInputs({});
-    setuserId("")
+    setuserId("");
   };
 
   return (
